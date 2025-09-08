@@ -11,7 +11,7 @@ type ProductType = {
   image?: string;
 };
 
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:8080" : "/";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:8080" : "";
 export const Product: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [formData, setFormData] = useState<ProductType>({
