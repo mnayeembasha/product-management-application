@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Products.css";
+import "./product-dashboard.css";
 
 type ProductType = {
   _id?: string;

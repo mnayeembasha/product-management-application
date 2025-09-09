@@ -7,7 +7,24 @@ export type ProductType = {
     category:string;
     slug:string;
     image?:string;
+    createdAt?:Date;
+    updatedAt?:Date;
+    createdBy?:string;
 }
+
+export const CATEGORIES = [
+    "electronics",
+    "fashion",
+    "wearables",
+    "home-and-living",
+    "sports-and-outdoors",
+    "toys-and-games",
+    "health-and-beauty",
+    "groceries",
+    "books-and-media",
+    "automotive",
+    "jewellery",
+]
 
 const productSchema = new mongoose.Schema<ProductType>({
     name: {
@@ -29,12 +46,21 @@ const productSchema = new mongoose.Schema<ProductType>({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum: CATEGORIES
     },
     image: {
         type: String,
         default: ""
     },
+    createdBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+    }
+
+},{
+    timestamps: true
 });
 
 export const Product = mongoose.model("Product", productSchema);

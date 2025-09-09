@@ -23,8 +23,7 @@
 .text-sm { font-size: var(--font-size-sm); }
 .text-lg { font-size: var(--font-size-lg); }
 
-/* Backgrounds */
-.bg-primary {
+ .bg-primary {
     background: var(--primary);
     color: var(--primary-foreground);
   }
@@ -34,7 +33,6 @@
     color: var(--secondary-foreground);
   }
 
-  /* Gradients */
   .bg-gradient-primary {
     background: var(--gradient-primary);
     color: var(--primary-foreground);

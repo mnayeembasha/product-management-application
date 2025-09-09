@@ -1,41 +1,36 @@
 :root {
-    /* ---------- Theme Colors (Light / Zinc) ---------- */
     --background: #ffffff;
     --foreground: #0a0a0a;
 
-    --primary: #18181b; /* zinc-900 */
+    --primary: #18181b;
     --primary-foreground: #fafafa;
 
-    --secondary: #f4f4f5; /* zinc-100 */
+    --secondary: #f4f4f5;
     --secondary-foreground: #18181b;
 
-    --muted: #f4f4f5; /* zinc-100 */
-    --muted-foreground: #71717a; /* zinc-500 */
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
 
-    --accent: #f4f4f5; /* zinc-100 */
+    --accent: #f4f4f5;
     --accent-foreground: #18181b;
 
-    --border: #e4e4e7; /* zinc-200 */
+    --border: #e4e4e7;
     --input: #e4e4e7;
     --ring: #18181b;
 
-    /* ---------- Status Colors ---------- */
     --success: #22c55e;
     --danger: #ef4444;
     --warning: #f59e0b;
-
     /* ---------- Gradients ---------- */
     --gradient-primary: linear-gradient(135deg, #18181b, #3f3f46);
     --gradient-accent: linear-gradient(135deg, #06b6d4, #3b82f6);
 
-    /* ---------- Typography & Spacing ---------- */
     --font-family: "Inter", sans-serif;
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 16px;
   }
 
-  /* ---------- Dark Mode (Slate Theme) ---------- */
   [data-theme="dark"] {
     --background: #0a0a0a;
     --foreground: #fafafa;

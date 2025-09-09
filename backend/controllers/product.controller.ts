@@ -1,7 +1,6 @@
 import {type Request,type Response} from "express";
 import { Product } from "../models/Product";
 import { generateSlug } from "../utils/generateSlug";
-import mongoose from "mongoose";
 
 export const getProducts = async(req:Request,res:Response)=>{
     try {
@@ -36,7 +35,8 @@ export const addProduct = async (req:Request,res:Response)=>{
             price,
             description,
             category,
-            slug:generateSlug(name)
+            slug:generateSlug(name),
+            // createdBy:req.user?._id
         });
 
         if(!addedProduct){

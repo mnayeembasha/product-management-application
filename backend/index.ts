@@ -4,8 +4,10 @@ import cors from "cors";
 import path from "path";
 const app = express();
 import productRoutes from "./routes/product.routes";
+import authRoutes from "./routes/auth.routes";
 import { connectDB } from "./lib/db";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 app.use(cors({
@@ -15,7 +17,9 @@ app.use(cors({
 
 app.use(express.json({limit:"5MB"}));
 app.use(express.urlencoded({extended:true,limit:"5MB"}));
+app.use(cookieParser());
 
+app.use("/api/auth",authRoutes);
 app.use("/api/products",productRoutes);
 
 const __dirname = path.resolve();
@@ -25,6 +29,7 @@ if(process.env.NODE_ENV === "production"){
         res.sendFile(path.join(__dirname,"../frontend/dist/index.html"));
     });
 }
+
 
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`);
