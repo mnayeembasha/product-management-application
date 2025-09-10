@@ -2,11 +2,12 @@ import mongoose from "mongoose";
 
 export type ProductType = {
     name:string;
-    price:string;
+    price:number;
     description:string;
     category:string;
     slug:string;
     image?:string;
+    imagePublicId?:string; // Added field to store Cloudinary public ID
     createdAt?:Date;
     updatedAt?:Date;
     createdBy?:string;
@@ -24,7 +25,7 @@ export const CATEGORIES = [
     "books-and-media",
     "automotive",
     "jewellery",
-]
+] as const;
 
 const productSchema = new mongoose.Schema<ProductType>({
     name: {
@@ -37,7 +38,7 @@ const productSchema = new mongoose.Schema<ProductType>({
         unique:true
     },
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     description: {
@@ -50,6 +51,10 @@ const productSchema = new mongoose.Schema<ProductType>({
         enum: CATEGORIES
     },
     image: {
+        type: String,
+        default: ""
+    },
+    imagePublicId: {
         type: String,
         default: ""
     },

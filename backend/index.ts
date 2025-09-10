@@ -8,6 +8,9 @@ import authRoutes from "./routes/auth.routes";
 import { connectDB } from "./lib/db";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import mongoSanitize from "express-mongo-sanitize";
+import { connectRedis } from "./lib/redisClient";
+
 dotenv.config();
 
 app.use(cors({
@@ -18,6 +21,7 @@ app.use(cors({
 app.use(express.json({limit:"5MB"}));
 app.use(express.urlencoded({extended:true,limit:"5MB"}));
 app.use(cookieParser());
+// app.use(mongoSanitize());
 
 app.use("/api/auth",authRoutes);
 app.use("/api/products",productRoutes);
@@ -31,7 +35,19 @@ if(process.env.NODE_ENV === "production"){
 }
 
 
-app.listen(PORT,()=>{
-    console.log(`Server running on port ${PORT}`);
-    connectDB();
-});
+
+
+const startServer = async() => {
+    try {
+        await connectDB();
+        await connectRedis();
+        app.listen(PORT,()=>{
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+        process.exit(1);
+    }
+}
+
+startServer();

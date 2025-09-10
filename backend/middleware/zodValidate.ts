@@ -1,8 +1,13 @@
 import {ZodObject, ZodError} from "zod";
 import {type Request,type Response,type NextFunction} from "express";
-export const zodValidate = (schema:ZodObject,sendAllErrors:boolean = false) => (req:Request, res:Response, next:NextFunction)  => {
+export const zodValidate = (schema:ZodObject,sendAllErrors:boolean = false,parseQueryParams:boolean = false) => (req:Request, res:Response, next:NextFunction)  => {
     try{
-        schema.parse(req.body);
+        if(parseQueryParams){
+            schema.parse(req.query);
+        }else{
+            schema.parse(req.body);
+        }
+
         next();
     }catch(error){
         if(error instanceof ZodError){

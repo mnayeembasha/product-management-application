@@ -80,9 +80,3 @@ export const checkAuth = (req:Request,res:Response)=>{
 }
 
 
-// {
-//     "name": "Mechanical Keyboard",
-//     "price": "2499",
-//     "description": "RGB backlit mechanical keyboard with blue switches for gaming and typing.",
-//     "category": "electronics"
-// }
