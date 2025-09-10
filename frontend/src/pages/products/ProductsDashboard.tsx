@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
-import { Filter, Search, X } from 'lucide-react';
+import { Filter, Search } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce';
 import { CATEGORIES } from '@/types';
