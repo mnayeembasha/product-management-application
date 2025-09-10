@@ -118,7 +118,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ open, onOpenChange,
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-h-[80vh] overflow-y-scroll !w-[95vw] !max-w-none sm:!w-[80vw] lg:!w-[1000px]">
         <DialogHeader>
           <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>

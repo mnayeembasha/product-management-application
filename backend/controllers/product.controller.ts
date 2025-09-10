@@ -4,6 +4,7 @@ import { generateSlug } from "../utils/generateSlug";
 import cloudinary from "../lib/cloudinary";
 import redisClient from "../lib/redisClient";
 import { clearProductCache } from "../utils/clearCache";
+import mongoose from "mongoose";
 
 export const getProducts = async(req:Request,res:Response) => {
     try {
@@ -124,6 +125,10 @@ export const addProduct = async (req:Request,res:Response)=>{
 
 export const editProduct = async (req: Request, res: Response) => {
   const productId = req.params.id;
+
+  if(!mongoose.Types.ObjectId.isValid(productId as string)){
+      return res.status(400).json({message:"Invalid product id"});
+  }
   const { price, description, category, image } = req.body;
 
   try {
@@ -184,6 +189,9 @@ export const editProduct = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req:Request,res:Response)=>{
     const productId = req.params.id;
+    if(!mongoose.Types.ObjectId.isValid(productId as string)){
+      return res.status(400).json({message:"Invalid product id"});
+  }
     try {
         const deletedProduct = await Product.findByIdAndDelete(productId);
         if(!deletedProduct){

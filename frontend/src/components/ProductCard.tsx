@@ -14,28 +14,25 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin = false, onEdit, onDelete }) => {
   return (
-    <Card className="h-full flex flex-col group overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/10 border-border/50 hover:border-border bg-gradient-to-br from-orange-50/80 via-amber-50/60 to-yellow-50/40 dark:from-orange-950/30 dark:via-amber-950/20 dark:to-yellow-950/10 backdrop-blur-sm hover:border-orange-200 dark:hover:border-orange-400">
+    <Card className="h-full flex flex-col group overflow-hidden p-0 pb-4  transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/10 border-border/50  bg-gradient-to-br from-orange-50/80 via-amber-50/60 to-yellow-50/40 dark:from-orange-950/30 dark:via-amber-950/20 dark:to-yellow-950/10 backdrop-blur-sm hover:border-orange-200 dark:hover:border-orange-400">
 
       {/* Image Section - No space above */}
-      <div className="">
-        {product.image ? (
-          <img
-            src={product.image}
-            alt={product.name}
-            // width={400}
-            // height={300}
-            className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105 rounded-2xl"
-          />
-        ) : (
-          <div className="w-full h-64 bg-gradient-to-br from-orange-200 via-amber-200 to-yellow-200 dark:from-orange-800 dark:via-amber-800 dark:to-yellow-800 flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center text-muted-foreground">
-              <ImageIcon className="h-8 w-8 mb-2 opacity-60" />
-              <span className="text-sm font-medium">No Image</span>
-            </div>
-          </div>
-        )}
+     <div className="m-0 p-0">
+  {product.image ? (
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+  ) : (
+    <div className="w-full h-64 bg-gradient-to-br from-orange-200 via-amber-200 to-yellow-200 flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center text-muted-foreground">
+        <ImageIcon className="h-8 w-8 mb-2 opacity-60" />
+        <span className="text-sm font-medium">No Image</span>
       </div>
-
+    </div>
+  )}
+</div>
       {/* Header Section - Name & Badge */}
       <CardHeader className="px-5">
         <div className="flex items-center justify-between gap-1">

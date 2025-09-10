@@ -6,11 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
-import { Filter, Search } from 'lucide-react';
+import { LayoutDashboard, Search } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import { useDebounce } from '@/hooks/useDebounce';
 import { CATEGORIES } from '@/types';
 import { useNavigate } from 'react-router-dom';
+import {IconAdjustmentsHorizontal} from "@tabler/icons-react";
 
 const ProductsDashboard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +31,7 @@ const ProductsDashboard: React.FC = () => {
 
   const handleClearFilters = () => {
     setSearch('');
-    setSort('latest');
+    setSort('oldest');
     setCategory('all');
   };
 
@@ -40,12 +41,16 @@ const ProductsDashboard: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 lg:px-16">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
-        <h1 className="text-3xl font-bold">Products</h1>
-        {!authUser && (
-          <div className="flex items-center space-x-2">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+        <h1 className="text-3xl font-bold text-center md:text-left">Products</h1>
+        {!authUser ? (
+          <div className="flex items-center space-x-2 justify-center md:justify-start">
             <p>Login to upload your products</p>
             <Button onClick={handleLogin}>Login</Button>
+          </div>
+        ) :(
+          <div>
+            <Button onClick={() => navigate('/admin')}><LayoutDashboard strokeWidth={3} /> Manage Products</Button>
           </div>
         )}
       </div>
@@ -65,7 +70,20 @@ const ProductsDashboard: React.FC = () => {
 
   {/* Sort Dropdown with Filter Icon */}
 <div className="relative w-full md:w-[200px]">
-  <Filter className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+  {/* <Filter className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" /> */}
+   {/* Light mode icon */}
+  {/* <img
+    src="/filter.png"
+    alt="Filter Icon"
+    className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 pointer-events-none dark:hidden"
+  />
+  <img
+    src="/filter-light.png"
+    alt="Filter Icon Dark"
+    className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 pointer-events-none hidden dark:block"
+  /> */}
+
+  <IconAdjustmentsHorizontal className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" stroke={2} />
   <Select value={sort} onValueChange={setSort}>
     <SelectTrigger className="pl-10 w-full">
       <SelectValue placeholder="Sort by" />

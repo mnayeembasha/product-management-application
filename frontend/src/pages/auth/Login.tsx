@@ -50,7 +50,7 @@ export const Login: React.FC = () => {
 
   React.useEffect(() => {
     if (authUser) {
-      navigate('/dashboard');
+      navigate('/admin');
     }
   }, [authUser, navigate]);
 
@@ -79,6 +79,7 @@ export const Login: React.FC = () => {
       };
 
       await dispatch(login(cleanValues)).unwrap();
+      navigate("/admin");
       // toast.success('Welcome back! Login successful!');
       // Navigation will be handled by the useEffect when authUser changes
     } catch (error: unknown) {

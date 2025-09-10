@@ -29,11 +29,10 @@ const AppContent = () => {
   }
     return (<Routes>
         <Route path="/" element={
-            <ProtectedRoute>
+
                 <Layout>
                     <ProductsDashboard/>
                 </Layout>
-            </ProtectedRoute>
         }/>
          <Route
             path="/signup"

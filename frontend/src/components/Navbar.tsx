@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LogIn, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -9,10 +9,12 @@ import { ToggleMode } from "./ToggleMode";
 export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { authUser, isLoggingOut } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await dispatch(logout()).unwrap();
+      navigate("/");
     } catch (error) {
       console.error('Logout error:', error);
     }
@@ -31,7 +33,7 @@ export const Navbar: React.FC = () => {
               {/* <div className="size-8  rounded-lg bg-gradient-primary flex items-center justify-center shadow-md">
                 <PenTool className="w-4 h-4 text-primary-foreground" />
               </div> */}
-              <h1 className="text-gradient-primary text-2xl   tracking-tighter">
+              <h1 className="text-gradient-primary text-2xl font-bold tracking-tighter">
                 ProdManager
               </h1>
             </Link>
@@ -44,7 +46,7 @@ export const Navbar: React.FC = () => {
               showLabel={false}
               className=""
             />
-            
+
 
             {authUser ? (
               <>

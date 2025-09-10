@@ -13,6 +13,7 @@ import { Plus } from 'lucide-react';
 const AdminDashboard: React.FC = () => {
   const dispatch = useAppDispatch();
   const { myProducts, isFetchingMyProducts } = useAppSelector((state) => state.product);
+  const {authUser} = useAppSelector((state) => state.auth);
 
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -35,16 +36,34 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="container mx-auto py-8 px-4 lg:px-16">
-      <div className="flex justify-between flex-wrap gap-y-4 items-center mb-6">
-        <h1 className="text-3xl font-bold">My Products</h1>
-        <Button
-          onClick={() => setAddOpen(true)}
-          className="flex items-center gap-2 px-4 py-2"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Product</span>
-        </Button>
+   <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+  {/* Left: Page Title */}
+  <h1 className="text-3xl font-bold tracking-tight">My Products</h1>
+
+  {/* Right: User Info + Button */}
+  <div className="flex items-center gap-4">
+    {authUser && (
+      <div className="flex items-center gap-2 bg-muted/40 px-3 py-1.5 rounded-full">
+        <img
+          src={authUser.profilePic}
+          alt={authUser.fullName}
+          className="w-8 h-8 rounded-full border border-border shadow-sm"
+        />
+        <span className="text-sm font-medium text-muted-foreground">
+          {authUser.fullName}
+        </span>
       </div>
+    )}
+
+    <Button
+      onClick={() => setAddOpen(true)}
+      className="flex items-center gap-2 px-4 py-2 shadow-md rounded-xl"
+    >
+      <Plus className="w-4 h-4" />
+      <span>Add Product</span>
+    </Button>
+  </div>
+</div>
       {isFetchingMyProducts ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (

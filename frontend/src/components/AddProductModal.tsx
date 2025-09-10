@@ -85,7 +85,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onOpenChange })
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-h-[80vh] overflow-y-auto !w-[95vw] !max-w-none sm:!w-[80vw] lg:!w-[1000px]">
         <DialogHeader>
           <DialogTitle>Add New Product</DialogTitle>
         </DialogHeader>
@@ -98,7 +98,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onOpenChange })
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input {...field} disabled={isAdding} />
+                    <Input {...field} disabled={isAdding} placeholder='Enter product name'/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,9 +113,9 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onOpenChange })
                   <FormControl>
                     <Input
                       type="number"
-                      step="0.01"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      placeholder='Enter product price'
+                      onChange={(e) => field.onChange(parseFloat(e.target.value) )}
                       disabled={isAdding}
                     />
                   </FormControl>
@@ -130,7 +130,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onOpenChange })
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea {...field} disabled={isAdding} />
+                    <Textarea {...field} disabled={isAdding} placeholder='Enter product description' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
