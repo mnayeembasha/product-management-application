@@ -15,8 +15,8 @@ export type ProductType = {
   category: string;
   slug: string;
   image?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: string;
+  updatedAt?: string;
   createdBy?: string;
 };
 

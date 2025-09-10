@@ -10,6 +10,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import mongoSanitize from "express-mongo-sanitize";
 import { connectRedis } from "./lib/redisClient";
+import { errorHandler } from "./middleware/errorMiddleware";
 
 dotenv.config();
 
@@ -25,6 +26,9 @@ app.use(cookieParser());
 
 app.use("/api/auth",authRoutes);
 app.use("/api/products",productRoutes);
+
+// Centralized error handling
+app.use(errorHandler);
 
 const __dirname = path.resolve();
 if(process.env.NODE_ENV === "production"){

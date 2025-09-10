@@ -2,8 +2,9 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Pencil, Trash2, ImageIcon } from 'lucide-react';
+import { Pencil, Trash2, ImageIcon, Calendar } from 'lucide-react';
 import { type ProductType } from '@/types';
+import { formatDate, formatTime } from '@/lib/utils';
 
 interface ProductCardProps {
   product: ProductType;
@@ -64,8 +65,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin = false, onE
       </CardContent>
 
       {/* Price Section - Always at bottom */}
-      <div>
-        <div className="px-5">
+      <div className=''>
+        <div className="px-5 flex justify-between">
         <p
           className="text-2xl font-bold"
           style={{
@@ -77,10 +78,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin = false, onE
         >
           ₹{product.price.toLocaleString('en-IN')}
         </p>
+
+        <div>
+          <p className="text-muted-foreground text-sm mt-2">
+            <span className='flex items-center gap-x-1'>
+              <Calendar className="w-4 h-4 mr-1" />
+            {formatDate(product.createdAt as string)} {","} {formatTime(product.createdAt as string)}
+            </span>
+          </p>
+        </div>
         </div>
         {/* Admin Controls */}
-      {isAdmin && (
-        <CardFooter className="px-5 justify-end">
+     <div>
+       {isAdmin && (
+        <CardFooter className="px-5 justify-end items-center pt-4">
           <div className="flex gap-2">
             <Button
               variant="outline"
@@ -101,6 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin = false, onE
           </div>
         </CardFooter>
       )}
+     </div>
       </div>
 
 
