@@ -37,15 +37,10 @@ const signupSchema = z.object({
       message: 'Please enter a valid email address.',
     }),
   password: z.string()
-    .min(8, {
-      message: 'Password must be at least 8 characters.',
-    })
-    .max(100, {
-      message: 'Password must not exceed 100 characters.',
-    })
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
-      message: 'Password must contain at least one uppercase letter, one lowercase letter, and one number.',
-    }),
+  .min(1, { message: 'Password is required.' })
+  .min(6, {
+    message: 'Password should contain at least 6 characters.',
+  }),
 });
 
 export const SignUp: React.FC = () => {

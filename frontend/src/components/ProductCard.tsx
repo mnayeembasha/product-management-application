@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin = false, onE
 </div>
       {/* Header Section - Name & Badge */}
       <CardHeader className="px-5">
-        <div className="flex items-center justify-between gap-1">
+        <div className=" flex flex-col gap-y-2 2xl:flex 2xl:flex-row 2xl:justify-between 2xl:items-center">
           <CardTitle
             className="text-lg font-semibold leading-tight group-hover:text-primary transition-colors duration-200 truncate tracking-tight"
             style={{
